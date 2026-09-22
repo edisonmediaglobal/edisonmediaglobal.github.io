@@ -1,0 +1,1073 @@
+/* ==========================================
+   CONFIGURACIÓN GENERAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #51265f 0%,
+            #281033 42%,
+            #0b0410 100%
+        );
+}
+
+
+/* ==========================================
+   CAPAS DEL FONDO
+========================================== */
+
+#estrellas,
+#mensajes,
+#particulas {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+
+#estrellas {
+    z-index: 0;
+}
+
+
+#mensajes {
+    z-index: 1;
+}
+
+
+#particulas {
+    z-index: 2;
+}
+
+
+/* ==========================================
+   LUZ CENTRAL
+========================================== */
+
+.luz-fondo {
+
+    position: fixed;
+
+    width: 650px;
+    height: 650px;
+
+    left: 50%;
+    top: 48%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 220, 50, 0.14),
+            rgba(255, 215, 0, 0.04) 50%,
+            transparent 72%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation:
+        respirarLuz
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes respirarLuz {
+
+    0%,
+    100% {
+
+        opacity: 0.6;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+}
+
+
+/* ==========================================
+   CONTENIDO
+========================================== */
+
+.contenido {
+
+    position: relative;
+
+    z-index: 5;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding:
+        45px
+        15px
+        70px;
+}
+
+
+/* ==========================================
+   TÍTULO PRINCIPAL
+========================================== */
+
+.titulo {
+
+    max-width: 900px;
+
+    opacity: 0;
+
+    transform:
+        translateY(-40px);
+
+    animation:
+        aparecerTitulo
+        1.8s
+        ease
+        forwards;
+}
+
+
+.corazon-superior {
+
+    font-size: 40px;
+
+    margin-bottom: 8px;
+
+    animation:
+        latido
+        1.3s
+        infinite;
+}
+
+
+.titulo h1 {
+
+    font-size:
+        clamp(
+            31px,
+            7vw,
+            58px
+        );
+
+    color: #fff5a0;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 6px white,
+        0 0 15px #ffd700,
+        0 0 30px #ffb700,
+        0 0 55px rgba(255, 190, 0, 0.65);
+}
+
+
+.titulo p {
+
+    margin-top: 13px;
+
+    font-size:
+        clamp(
+            15px,
+            3vw,
+            20px
+        );
+
+    color: #fffbd6;
+}
+
+
+@keyframes aparecerTitulo {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* ==========================================
+   ZONA DEL RAMO
+========================================== */
+
+.zona-ramo {
+
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+}
+
+
+.ramo {
+
+    position: relative;
+
+    width: 440px;
+    height: 680px;
+
+    max-width: 100%;
+
+    margin-top: 10px;
+
+    animation:
+        aparecerRamo
+        2s
+        0.5s
+        ease
+        both;
+}
+
+
+@keyframes aparecerRamo {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(80px)
+            scale(0.75);
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==========================================
+   TALLOS
+========================================== */
+
+.tallo {
+
+    position: absolute;
+
+    bottom: 80px;
+    left: 50%;
+
+    width: 7px;
+    height: 400px;
+
+    border-radius: 10px;
+
+    transform-origin:
+        bottom center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #103a18,
+            #5bc766,
+            #176326
+        );
+
+    z-index: 1;
+}
+
+
+/* ==========================================
+   HOJAS
+========================================== */
+
+.hoja {
+
+    position: absolute;
+
+    width: 68px;
+    height: 34px;
+
+    border-radius:
+        100% 0
+        100% 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #75dd65,
+            #287e38,
+            #125620
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(80, 200, 90, 0.3);
+
+    z-index: 2;
+}
+
+
+/* ==========================================
+   FLORES
+========================================== */
+
+.flor {
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    z-index: 7;
+
+    animation:
+        moverFlor
+        3s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+@keyframes moverFlor {
+
+    from {
+        rotate: -3deg;
+    }
+
+    to {
+        rotate: 3deg;
+    }
+}
+
+
+/* ==========================================
+   PÉTALOS
+========================================== */
+
+.petalo {
+
+    position: absolute;
+
+    width: 38px;
+    height: 66px;
+
+    top: 0;
+    left: 36px;
+
+    transform-origin:
+        50% 55px;
+
+    border-radius:
+        55% 55%
+        45% 45%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fffdb1 0%,
+            #fff45b 22%,
+            #ffe328 48%,
+            #ffc400 75%,
+            #ec9f00 100%
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(255, 221, 0, 0.6),
+
+        inset
+        0 0 8px
+        rgba(255, 255, 255, 0.45);
+}
+
+
+/* ==========================================
+   CENTRO DE LAS FLORES
+========================================== */
+
+.centro {
+
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    left: 31px;
+    top: 31px;
+
+    border-radius: 50%;
+
+    z-index: 10;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #d99a3d,
+            #845019 50%,
+            #3c2009 100%
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 190, 0, 0.75);
+}
+
+
+/* ==========================================
+   ENVOLTURA
+========================================== */
+
+.envoltura {
+
+    position: absolute;
+
+    width: 300px;
+    height: 275px;
+
+    bottom: 15px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    clip-path:
+        polygon(
+            2% 0,
+            98% 0,
+            68% 100%,
+            32% 100%
+        );
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8ce,
+            #f1cf6d,
+            #ce9a31,
+            #a66a17
+        );
+
+    z-index: 10;
+
+    filter:
+        drop-shadow(
+            0 15px 15px
+            rgba(0, 0, 0, 0.45)
+        );
+}
+
+
+/* ==========================================
+   CARTITA
+========================================== */
+
+.tarjeta {
+
+    position: absolute;
+
+    width: 240px;
+
+    bottom: 110px;
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        rotate(-2deg);
+
+    padding:
+        15px
+        14px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffef5,
+            #fff4b7
+        );
+
+    border:
+        3px solid
+        #e4b32b;
+
+    color: #68400a;
+
+    z-index: 30;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.4),
+
+        0 0 20px
+        rgba(255, 215, 0, 0.45);
+}
+
+
+/* ==========================================
+   MARCO DE LA FOTO
+========================================== */
+
+.marco-foto {
+
+    position: relative;
+
+    width: 125px;
+    height: 125px;
+
+    margin:
+        0 auto
+        12px;
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7a5,
+            #ffd700,
+            #e9a800,
+            #fff080
+        );
+
+    box-shadow:
+        0 0 10px #ffd700,
+        0 0 25px
+        rgba(255, 215, 0, 0.65);
+}
+
+
+/* ==========================================
+   FOTO DANNITA
+
+   Esta clase controla Dannita.jpg
+========================================== */
+
+.foto-dannita {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 50%;
+
+    border:
+        3px solid
+        white;
+
+    background:
+        #eeeeee;
+}
+
+
+/* ==========================================
+   CORAZÓN DE LA FOTO
+========================================== */
+
+.corazon-foto {
+
+    position: absolute;
+
+    right: -10px;
+    bottom: 2px;
+
+    font-size: 31px;
+
+    filter:
+        drop-shadow(
+            0 0 7px
+            #ffd700
+        );
+
+    animation:
+        latido
+        1.2s
+        infinite;
+}
+
+
+@keyframes latido {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+
+    50% {
+
+        transform:
+            scale(1.3);
+    }
+}
+
+
+/* ==========================================
+   TEXTO DE LA CARTITA
+========================================== */
+
+.tarjeta h3 {
+
+    font-size: 17px;
+
+    color: #70470c;
+
+    margin-bottom: 8px;
+}
+
+
+.tarjeta h3 span {
+
+    color: #b77a00;
+}
+
+
+.tarjeta p {
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+    color: #7b5219;
+
+    margin-top: 5px;
+}
+
+
+.decoracion-tarjeta {
+
+    margin-top: 9px;
+
+    font-size: 18px;
+}
+
+
+/* ==========================================
+   LAZO
+========================================== */
+
+.lazo {
+
+    position: absolute;
+
+    width: 32px;
+    height: 32px;
+
+    bottom: 65px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #ffd700;
+
+    box-shadow:
+        0 0 12px #ffd700,
+        0 0 25px
+        rgba(255, 215, 0, 0.6);
+
+    z-index: 40;
+}
+
+
+.lazo::before,
+.lazo::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: -8px;
+
+    width: 90px;
+    height: 48px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff48a,
+            #ffd31c,
+            #d69d00
+        );
+}
+
+
+.lazo::before {
+
+    right: 19px;
+
+    border-radius:
+        70% 10%
+        70% 20%;
+
+    transform:
+        rotate(15deg);
+}
+
+
+.lazo::after {
+
+    left: 19px;
+
+    border-radius:
+        10% 70%
+        20% 70%;
+
+    transform:
+        rotate(-15deg);
+}
+
+
+/* ==========================================
+   MENSAJE FINAL
+========================================== */
+
+.mensaje-final {
+
+    opacity: 0;
+
+    animation:
+        mostrarFinal
+        2s
+        2s
+        forwards;
+}
+
+
+.mensaje-final h2 {
+
+    font-size:
+        clamp(
+            28px,
+            6vw,
+            48px
+        );
+
+    color: #fff05c;
+
+    text-shadow:
+        0 0 7px white,
+        0 0 15px #ffd700,
+        0 0 30px #ffb700,
+        0 0 50px
+        rgba(255, 190, 0, 0.6);
+
+    animation:
+        latidoFinal
+        1.8s
+        infinite;
+}
+
+
+.mensaje-final p {
+
+    margin-top: 14px;
+
+    font-size: 20px;
+
+    color: #fff8c5;
+}
+
+
+@keyframes mostrarFinal {
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes latidoFinal {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+
+    50% {
+
+        transform:
+            scale(1.05);
+    }
+}
+
+
+/* ==========================================
+   ESTRELLAS
+========================================== */
+
+.estrella {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: #fff8a6;
+
+    box-shadow:
+        0 0 5px white,
+        0 0 12px #ffd700;
+
+    animation:
+        brillar
+        2s
+        infinite
+        alternate;
+}
+
+
+@keyframes brillar {
+
+    from {
+
+        opacity: 0.2;
+
+        transform:
+            scale(0.5);
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1.7);
+    }
+}
+
+
+/* ==========================================
+   MENSAJES FLOTANTES
+========================================== */
+
+.mensaje-flotante {
+
+    position: absolute;
+
+    bottom: -60px;
+
+    white-space: nowrap;
+
+    font-weight: bold;
+
+    color:
+        rgba(
+            255,
+            245,
+            165,
+            0.28
+        );
+
+    text-shadow:
+        0 0 8px
+        rgba(255, 215, 0, 0.3);
+
+    animation:
+        subirMensaje
+        linear
+        forwards;
+}
+
+
+@keyframes subirMensaje {
+
+    0% {
+
+        transform:
+            translateY(0);
+
+        opacity: 0;
+    }
+
+
+    15% {
+        opacity: 1;
+    }
+
+
+    85% {
+        opacity: 1;
+    }
+
+
+    100% {
+
+        transform:
+            translateY(-120vh);
+
+        opacity: 0;
+    }
+}
+
+
+/* ==========================================
+   PARTÍCULAS
+========================================== */
+
+.particula {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            #ffd700
+        );
+
+    animation:
+        subirParticula
+        linear
+        forwards;
+}
+
+
+@keyframes subirParticula {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+
+    15% {
+
+        opacity: 1;
+    }
+
+
+    100% {
+
+        transform:
+            translateY(-115vh)
+            rotate(360deg)
+            scale(1.2);
+
+        opacity: 0;
+    }
+}
+
+
+/* ==========================================
+   ADAPTACIÓN PARA CELULAR
+========================================== */
+
+@media (max-width: 500px) {
+
+    .contenido {
+
+        padding-top: 30px;
+    }
+
+
+    .titulo h1 {
+
+        font-size: 29px;
+    }
+
+
+    .titulo p {
+
+        font-size: 15px;
+    }
+
+
+    .ramo {
+
+        width: 400px;
+
+        height: 660px;
+    }
+
+
+    .mensaje-final h2 {
+
+        font-size: 29px;
+    }
+
+
+    .mensaje-final p {
+
+        font-size: 17px;
+    }
+}
